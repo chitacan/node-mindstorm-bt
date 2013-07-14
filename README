@@ -13,7 +13,7 @@ First setup your Lego Mindstoms NXT brick. It will create a serial port, get tha
 Require it, initialize and use.
 
 ```js
-var Nxt = require('mindstorms_bluetooth');
+var Nxt = require('mindstorms_bluetooth').Nxt;
 
 var nxt = new Nxt("/dev/tty.NXT-DevB");
 nxt.play_tone(440, 1000);
