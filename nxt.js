@@ -9,18 +9,9 @@ var SerialPort = serialport.SerialPort;
 // - Input checking
 // - proper close after use, maybe something with detect if command have been run, only exit when no commands need to be answered.
 
-var Nxt = function (port) {
+var Nxt = function (port, open_callback) {
 	this.initialized = false;
 	this.debug = false;
-
-	this.sp = new SerialPort(port, {
-		parser: serialport.parsers.raw
-	});
-	this.sp.data_handles = {};
-	this.initialized = true;
-	this.sp.on('data', this.status_handle);
-	this.sp.nxt_error_messages = this.nxt_error_messages;
-	this.sp.nxt_commands = this.nxt_commands;
 
 	//Output ports
 	this.MOTOR_A = 0x00;
@@ -76,6 +67,19 @@ var Nxt = function (port) {
 	this.ANGLESTEPSMODE = 0xe0;
 	this.SLOPEMASK = 0x1f;
 	this.MODEMASK = 0xe0;
+
+	//Serial port
+	this.sp = new SerialPort(port, {
+		parser: serialport.parsers.raw
+	});
+	this.sp.data_handles = {};
+	this.initialized = true;
+	this.sp.nxt_error_messages = this.nxt_error_messages;
+	this.sp.nxt_commands = this.nxt_commands;
+	this.sp.on('data', this.status_handle);
+  this.sp.on('open', open_callback);
+
+
 };
 
 Nxt.prototype.nxt_error_messages = {
