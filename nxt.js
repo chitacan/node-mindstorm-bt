@@ -290,7 +290,7 @@ Nxt.prototype.close_connection = function (sp) {
 	if (this.debug) {
 		console.log("Closing serialport connection");
 	}
-	this.sp.end(false, null);
+	this.sp.close();
 };
 
 module.exports.Nxt = Nxt;
