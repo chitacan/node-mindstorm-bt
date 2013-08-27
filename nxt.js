@@ -1,8 +1,6 @@
 "use strict";
 
-//var serialport = require("serialport");
-//var serialport = require("C:\\Users\\tamachan\\Dropbox\\mindstorms_bluetooth_nodejs\\node_modules\\serialport\\serialport");
-var serialport = require("./node_modules/serialport/serialport");
+var serialport = require("serialport");
 var SerialPort = serialport.SerialPort;
 
 //TODO:
