@@ -68,7 +68,8 @@ var Nxt = function (port, open_callback) {
 
 	//Serial port
 	this.sp = new SerialPort(port, {
-		parser: serialport.parsers.raw
+		parser: serialport.parsers.raw,
+    baudrate: 115200
 	});
 	this.sp.data_handles = {};
 	this.initialized = true;
